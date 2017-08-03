@@ -1,27 +1,39 @@
-def code():
-    print(("""
-{
-    "colors": [
+def build():
+    clearwaterColors = """"#0B325F",
         "#0A5EB2",
         "#00A2E0"
-    ],
+    """
+    clearwaterFont = '"Arial"'
+
+    chart = input('Chart type: ')
+    width = input('Width: ')
+    height = input('Height: ')
+    dataLabels = input('Data labels enabled? Type true or false: ')
+    legendEnabled = input('Legend enabled? Type true or false: ')
+
+    print("""{
+    "colors": [
+        """ +  clearwaterColors + """], 
+    
     "chart": {
-        "type": "column",
-        "width": 540.187,
-        "height": 228.958,
+        "type": """ +
+          '"' + chart + '",' + """
+        "width": """ + width + ',' + """
+        "height": """ + height + ',' + """
         "style": {
-            "fontFamily": "Arial"
-        },
+            "fontfamily": """ + clearwaterFont + """
+            },
         "spacingTop": 0,
         "spacingRight": 0,
         "spacingLeft": 0,
         "spacingBottom": 0,
         "renderTo": "highchartContainer"
     },
+    
     "plotOptions": {
         "series": {
             "dataLabels": {
-                "enabled": true,
+                "enabled": """ + dataLabels + """,
                 "format": "{y}",
                 "padding": 2,
                 "style": {
@@ -68,6 +80,7 @@ def code():
         "type": "value"
     },
     "legend": {
+        "enabled": """ + legendEnabled + """
         "align": "right",
         "verticalAlign": "top",
         "itemStyle": {
@@ -102,7 +115,6 @@ def code():
     "exporting": {
         "scale": 1
     }
-}
-"""));
+}""");
 
-code();
+build();
