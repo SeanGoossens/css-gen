@@ -1,7 +1,14 @@
 def build():
-    clearwaterColors = """"#0B325F",
-        "#0A5EB2",
-        "#00A2E0"
+    clearwaterColors = """"#0A5EB2",
+        "#00A2E0",
+        "#0B325F",
+        "#008B94",
+        "#56D8C2",
+        "#00B7BD",
+        "#B5B5B5",
+        "#636363",
+        "#282828",
+        "#EFEFEF"
     """
     clearwaterFont = '"Arial"'
 
@@ -80,7 +87,7 @@ def build():
         "type": "value"
     },
     "legend": {
-        "enabled": """ + legendEnabled + """
+        "enabled": """ + legendEnabled + """,
         "align": "right",
         "verticalAlign": "top",
         "itemStyle": {
