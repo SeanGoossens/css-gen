@@ -1,5 +1,7 @@
-def build():
-    clearwaterColors = """"#0A5EB2",
+#------------------------------------------------
+# Template color schemes
+
+clearwaterColors = """"#0A5EB2",
         "#00A2E0",
         "#0B325F",
         "#008B94",
@@ -10,15 +12,48 @@ def build():
         "#282828",
         "#EFEFEF"
     """
-    clearwaterFont = '"Arial"'
 
+pathColors = """"#47BFAF",
+        "#E94F3D",
+        "#797D82",
+        "#A9DBD3",
+        "#F88771",
+        "#797D82",
+        "#C7C9C8",
+        "#00B08F",
+        "#282828",
+        "#EFEFEF"
+    """
+
+#------------------------------------------------
+# Fonts
+
+pathFont = '"Arial"'
+clearwaterFont = '"Arial"'
+
+
+#------------------------------------------------
+# Chart Font Color
+
+pathChartColor = '"#4d4d4f"'
+clearwaterChartColor = '"#4d4d4f"'
+
+#------------------------------------------------
+# Chart Line Color
+
+pathLineColor = '"#808080"'
+clearwaterLineColor = '"#a7a9ac"'
+
+def build():
+    template = input('Which template? Type clearwater or path: ')
     chart = input('Chart type: ')
     width = input('Width: ')
     height = input('Height: ')
     dataLabels = input('Data labels enabled? Type true or false: ')
     legendEnabled = input('Legend enabled? Type true or false: ')
 
-    print("""{
+    if template == 'clearwater':
+        print("""{
     "colors": [
         """ +  clearwaterColors + """], 
     
@@ -48,7 +83,7 @@ def build():
                     "letterSpacing": ".05px",
                     "textShadow": "false"
                 },
-                "color": "#4d4d4f",
+                "color": """ + clearwaterChartColor + """,
                 "y": -2
             }
         },
@@ -67,7 +102,7 @@ def build():
             "text": null
         },
         "lineWidth": 0.5,
-        "lineColor": "#a7a9ac",
+        "lineColor": """ + clearwaterLineColor + """,
         "tickColor": "#a7a9ac",
         "tickPosition": "inside",
         "tickPositions": "",
@@ -81,7 +116,7 @@ def build():
             "format": "{value}%",
             "style": {
                 "fontSize": "8px",
-                "color": "#4d4d4f"
+                "color": """ + clearwaterChartColor + """
             }
         },
         "type": "value"
@@ -93,7 +128,7 @@ def build():
         "itemStyle": {
             "fontWeight": "normal",
             "fontSize": "8px",
-            "color": "#4d4d4f"
+            "color": """ + clearwaterChartColor + """
         },
         "symbolPadding": 3,
         "symbolRadius": 0,
@@ -104,7 +139,7 @@ def build():
         "enabled": false
     },
     "xAxis": {
-        "lineColor": "#a7a9ac",
+        "lineColor": """ + clearwaterLineColor + """,
         "tickColor": "#a7a9ac",
         "tickPosition": "inside",
         "tickLength": 4,
@@ -115,13 +150,120 @@ def build():
             "enabled": true,
             "style": {
                 "fontSize": "8px",
-                "color": "#4d4d4f"
+                "color": """ + clearwaterChartColor + """
             }
         }
     },
     "exporting": {
         "scale": 1
     }
-}""");
+}""")
+    elif (template == 'path'):
+        print("""{
+    "colors": [
+        """ + clearwaterColors + """], 
+
+    "chart": {
+        "type": """ +
+      '"' + chart + '",' + """
+        "width": """ + width + ',' + """
+        "height": """ + height + ',' + """
+        "style": {
+            "fontfamily": """ + pathFont + """
+            },
+        "spacingTop": 0,
+        "spacingRight": 0,
+        "spacingLeft": 0,
+        "spacingBottom": 0,
+        "renderTo": "highchartContainer"
+    },
+
+    "plotOptions": {
+        "series": {
+            "dataLabels": {
+                "enabled": """ + dataLabels + """,
+                "format": "{y}",
+                "padding": 2,
+                "style": {
+                    "fontSize": "8px",
+                    "letterSpacing": ".05px",
+                    "textShadow": "false"
+                },
+                "color": """ + pathChartColor + """,
+                "y": -2
+            }
+        },
+        "column": {
+            "borderWidth": 0,
+            "groupPadding": 0.06,
+            "pointPadding": 0,
+            "pointRange": 0
+        }
+    },
+    "title": {
+        "text": null
+    },
+    "yAxis": {
+        "title": {
+            "text": null
+        },
+        "lineWidth": 0.5,
+        "lineColor": """ + pathLineColor + """,
+        "tickColor": "#a7a9ac",
+        "tickPosition": "inside",
+        "tickPositions": "",
+        "tickWidth": 0.5,
+        "tickLength": 4,
+        "gridLineWidth": 0,
+        "gridLineInterpolation": null,
+        "labels": {
+            "enabled": true,
+            "x": -5,
+            "format": "{value}%",
+            "style": {
+                "fontSize": "8px",
+                "color": """ + pathChartColor + """
+            }
+        },
+        "type": "value"
+    },
+    "legend": {
+        "enabled": """ + legendEnabled + """,
+        "align": "right",
+        "verticalAlign": "top",
+        "itemStyle": {
+            "fontWeight": "normal",
+            "fontSize": "8px",
+            "color": """ + pathChartColor + """
+        },
+        "symbolPadding": 3,
+        "symbolRadius": 0,
+        "symbolWidth": 7,
+        "symbolHeight": 7
+    },
+    "credits": {
+        "enabled": false
+    },
+    "xAxis": {
+        "lineColor": """ + pathLineColor + """,
+        "tickColor": "#a7a9ac",
+        "tickPosition": "inside",
+        "tickLength": 4,
+        "type": "category",
+        "tickWidth": 0.5,
+        "lineWidth": 0.5,
+        "labels": {
+            "enabled": true,
+            "style": {
+                "fontSize": "8px",
+                "color": """ + pathChartColor + """
+            }
+        }
+    },
+    "exporting": {
+        "scale": 1
+    }
+    }""")
+
 
 build();
