@@ -1,7 +1,8 @@
 # ------------------------------------------------
 # Template color schemes
 
-clearwaterColors = """"#0A5EB2",
+clearwaterColors = """
+        "#0A5EB2",
         "#00A2E0",
         "#0B325F",
         "#008B94",
@@ -13,7 +14,8 @@ clearwaterColors = """"#0A5EB2",
         "#EFEFEF"
     """
 
-pathColors = """"#47BFAF",
+pathColors = """
+        "#47BFAF",
         "#E94F3D",
         "#797D82",
         "#A9DBD3",
@@ -46,14 +48,14 @@ clearwaterLineColor = '"#a7a9ac"'
 
 def build():
     template = input('Which template? Type clearwater or path: ')
-    chart = input('Chart type: ')
-    width = input('Width: ')
-    height = input('Height: ')
-    dataLabels = input('Data labels enabled? Type true or false: ')
-    legendEnabled = input('Legend enabled? Type true or false: ')
 
     if template == 'clearwater':
+        chart = input('Chart type: ')
         if chart == 'column':
+            width = input('Width: ')
+            height = input('Height: ')
+            dataLabels = input('Data labels enabled? Type true or false: ')
+            legendEnabled = input('Legend enabled? Type true or false: ')
             print("""{
         "colors": [
             """ + clearwaterColors + """], 
@@ -160,6 +162,10 @@ def build():
         }
     }""")
         elif chart == "area":
+            width = input('Width: ')
+            height = input('Height: ')
+            dataLabels = input('Data labels enabled? Type true or false: ')
+            legendEnabled = input('Legend enabled? Type true or false: ')
             print("""{
                     "colors": [
                         """ + clearwaterColors + """], 
@@ -260,6 +266,8 @@ def build():
                     }
                 }""")
         elif chart == "pie":
+            width = input('Width: ')
+            height = input('Height: ')
             print("""
 {
     "colors": [
@@ -337,6 +345,11 @@ def build():
     }
 }""")
     elif (template == 'path'):
+        chart = input('Chart type: ')
+        width = input('Width: ')
+        height = input('Height: ')
+        dataLabels = input('Data labels enabled? Type true or false: ')
+        legendEnabled = input('Legend enabled? Type true or false: ')
         print("""{
     "colors": [
         """ + clearwaterColors + """], 
