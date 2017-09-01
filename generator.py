@@ -27,23 +27,48 @@ pathColors = """
         "#EFEFEF"
     """
 
+jrColors = """
+        "#0074AC",
+        "#3FB6BE",
+        "#6CC6E7",
+        "#003660",
+        "#1B7D7C",
+        "#A0A0A0",
+        "#797D82",
+        "#C7C9C8",
+        "#5FA7B6",
+        "#3E5E85"
+    """
+
 # ------------------------------------------------
 # Fonts
 
 pathFont = '"Arial"'
 clearwaterFont = '"Arial"'
+jrFont = '"Arial"'
+
+
+# ------------------------------------------------
+# Font Size
+
+clearwaterFontSize = '"8px"'
+pathFontSize = '"8px"'
+jrFontSize = '"9px"'
+
 
 # ------------------------------------------------
 # Chart Font Color
 
 pathChartColor = '"#4d4d4f"'
 clearwaterChartColor = '"#4d4d4f"'
+jrChartColor = '"#4d4d4f"'
 
 # ------------------------------------------------
 # Chart Line Color
 
 pathLineColor = '"#808080"'
 clearwaterLineColor = '"#a7a9ac"'
+jrLineColor = '"#808080"'
 
 
 def build():
@@ -52,14 +77,23 @@ def build():
     if template == 'clearwater':
         colors = clearwaterColors
         font = clearwaterFont
+        fontSize = clearwaterFontSize
         chartColor = clearwaterChartColor
         lineColor = clearwaterLineColor
 
     elif template == 'path':
         colors = pathColors
         font = pathFont
+        fontSize = pathFontSize
         chartColor = pathChartColor
         lineColor = pathLineColor
+
+    elif template == 'jr':
+        colors = jrColors
+        font = jrFont
+        fontSize = jrFontSize
+        chartColor = jrChartColor
+        lineColor = jrLineColor
 
     chart = input('Chart type: ')
 
@@ -94,7 +128,7 @@ def build():
                 "format": "{y}",
                 "padding": 2,
                 "style": {
-                    "fontSize": "8px",
+                    "fontSize": """ + fontSize + """,
                     "letterSpacing": ".05px",
                     "textShadow": "false"
                 },
@@ -130,7 +164,7 @@ def build():
             "x": -5,
             "format": "{value}%",
             "style": {
-                "fontSize": "8px",
+                "fontSize": """ + fontSize + """,
                 "color": """ + chartColor + """
             }
         },
@@ -142,7 +176,7 @@ def build():
         "verticalAlign": "top",
         "itemStyle": {
             "fontWeight": "normal",
-            "fontSize": "8px",
+            "fontSize": """ + fontSize + """,
             "color": """ + chartColor + """
         },
         "symbolPadding": 3,
@@ -163,8 +197,11 @@ def build():
         "lineWidth": 0.5,
         "labels": {
             "enabled": true,
+            "autoRotationLimit": 5,
             "style": {
-                "fontSize": "8px",
+                "fontSize": """ + fontSize + """,
+                "textOverflow": "none",
+                "lineHeight": 9,
                 "color": """ + chartColor + """
             }
         }
@@ -204,7 +241,7 @@ def build():
                             "format": "{y}",
                             "padding": 2,
                             "style": {
-                                "fontSize": "8px",
+                                "fontSize": """ + fontSize + """,
                                 "letterSpacing": ".05px",
                                 "textShadow": "false"
                             },
@@ -234,7 +271,7 @@ def build():
                         "x": -5,
                         "format": "{value}%",
                         "style": {
-                            "fontSize": "8px",
+                            "fontSize": """ + fontSize + """,
                             "color": """ + chartColor + """
                         }
                     },
@@ -246,7 +283,7 @@ def build():
                     "verticalAlign": "top",
                     "itemStyle": {
                         "fontWeight": "normal",
-                        "fontSize": "8px",
+                        "fontSize": """ + fontSize + """,
                         "color": """ + chartColor + """
                     },
                     "symbolPadding": 3,
@@ -268,7 +305,7 @@ def build():
                     "labels": {
                         "enabled": true,
                         "style": {
-                            "fontSize": "8px",
+                            "fontSize": """ + fontSize + """,
                             "color": """ + chartColor + """
                         }
                     }
@@ -323,7 +360,7 @@ def build():
     "y": -1,
     "floating": false,
     "itemStyle": {
-        "fontSize": "9px",
+        "fontSize": """ + fontSize + """,
         "width": 120,
         "fontWeight": "normal"
     }
@@ -337,7 +374,7 @@ def build():
     "title": {
         "text": null,
         "style": {
-            "fontSize": "8px"
+            "fontSize": """ + fontSize + """
         }
     },
     "labels": {
@@ -348,7 +385,7 @@ def build():
 "xAxis": {
     "title": {
         "style": {
-            "fontSize": "8px"
+            "fontSize": """ + fontSize + """
         }
     },
     "type": "category"
