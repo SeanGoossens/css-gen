@@ -72,7 +72,7 @@ jrLineColor = '"#808080"'
 
 
 def build():
-    template = input('Which template? Type clearwater or path: ')
+    template = input('Which template? clearwater, path, or jr: ')
 
     if template == 'clearwater':
         colors = clearwaterColors
@@ -102,6 +102,13 @@ def build():
         height = input('Height: ')
         dataLabels = input('Data labels enabled? Type true or false: ')
         legendEnabled = input('Legend enabled? Type true or false: ')
+        axisFormat = input('Y axis format? Hit enter for none or type one of the following ($,%, M): ')
+        if axisFormat == '$':
+            axisFormat = '"${value}"'
+        elif axisFormat == '%':
+            axisFormat = '"{value}%"'
+        elif axisFormat == 'M':
+            axisFormat = '"{value}M"'
         print("""{
     "colors": [
         """ + colors + """], 
@@ -162,7 +169,7 @@ def build():
         "labels": {
             "enabled": true,
             "x": -5,
-            "format": "{value}%",
+            "format": """ + axisFormat + """,
             "style": {
                 "fontSize": """ + fontSize + """,
                 "color": """ + chartColor + """
@@ -210,11 +217,138 @@ def build():
         "scale": 1
     }
 }""")
+    elif chart == "line":
+        width = input('Width: ')
+        height = input('Height: ')
+        dataLabels = input('Data labels enabled? Type true or false: ')
+        legendEnabled = input('Legend enabled? Type true or false: ')
+        axisFormat = input('Y axis format? Hit enter for none or type one of the following ($,%, M): ')
+        if axisFormat == '$':
+            axisFormat = '"${value}"'
+        elif axisFormat == '%':
+            axisFormat = '"{value}%"'
+        elif axisFormat == 'M':
+            axisFormat = '"{value}M"'
+        print("""{
+        "colors": [
+            """ + colors + """], 
+
+        "chart": {
+            "type": """ +
+              '"' + chart + '",' + """
+            "width": """ + width + ',' + """
+            "height": """ + height + ',' + """
+            "style": {
+                "fontfamily": """ + font + """
+                },
+            "spacingTop": 0,
+            "spacingRight": 0,
+            "spacingLeft": 0,
+            "spacingBottom": 0,
+            "renderTo": "highchartContainer"
+        },
+
+        "plotOptions": {
+            "series": {
+                "dataLabels": {
+                    "enabled": """ + dataLabels + """,
+                    "format": "{y}",
+                    "padding": 2,
+                    "style": {
+                        "fontSize": """ + fontSize + """,
+                        "letterSpacing": ".05px",
+                        "textShadow": "false"
+                    },
+                    "color": """ + chartColor + """,
+                    "y": -2
+                }
+            },
+            "column": {
+                "borderWidth": 0,
+                "groupPadding": 0.06,
+                "pointPadding": 0,
+                "pointRange": 0
+            }
+        },
+        "title": {
+            "text": null
+        },
+        "yAxis": {
+            "title": {
+                "text": null
+            },
+            "lineWidth": 0.5,
+            "lineColor": """ + lineColor + """,
+            "tickColor": "#a7a9ac",
+            "tickPosition": "inside",
+            "tickPositions": "",
+            "tickWidth": 0.5,
+            "tickLength": 4,
+            "gridLineWidth": 0,
+            "gridLineInterpolation": null,
+            "labels": {
+                "enabled": true,
+                "x": -5,
+                "format": """ + axisFormat + """,
+                "style": {
+                    "fontSize": """ + fontSize + """,
+                    "color": """ + chartColor + """
+                }
+            },
+            "type": "value"
+        },
+        "legend": {
+            "enabled": """ + legendEnabled + """,
+            "align": "right",
+            "verticalAlign": "top",
+            "itemStyle": {
+                "fontWeight": "normal",
+                "fontSize": """ + fontSize + """,
+                "color": """ + chartColor + """
+            },
+            "symbolPadding": 3,
+            "symbolRadius": 0,
+            "symbolWidth": 7,
+            "symbolHeight": 7
+        },
+        "credits": {
+            "enabled": false
+        },
+        "xAxis": {
+            "lineColor": """ + lineColor + """,
+            "tickColor": "#a7a9ac",
+            "tickPosition": "inside",
+            "tickLength": 4,
+            "type": "category",
+            "tickWidth": 0.5,
+            "lineWidth": 0.5,
+            "labels": {
+                "enabled": true,
+                "autoRotationLimit": 5,
+                "style": {
+                    "fontSize": """ + fontSize + """,
+                    "textOverflow": "none",
+                    "lineHeight": 9,
+                    "color": """ + chartColor + """
+                }
+            }
+        },
+        "exporting": {
+            "scale": 1
+        }
+    }""")
     elif chart == "area":
         width = input('Width: ')
         height = input('Height: ')
         dataLabels = input('Data labels enabled? Type true or false: ')
         legendEnabled = input('Legend enabled? Type true or false: ')
+        axisFormat = input('Y axis format? Hit enter for none or type one of the following ($,%, M): ')
+        if axisFormat == '$':
+            axisFormat = '"${value}"'
+        elif axisFormat == '%':
+            axisFormat = '"{value}%"'
+        elif axisFormat == 'M':
+            axisFormat = '"{value}M"'
         print("""{
                 "colors": [
                     """ + colors + """], 
@@ -269,7 +403,7 @@ def build():
                     "labels": {
                         "enabled": true,
                         "x": -5,
-                        "format": "{value}%",
+                        "format": """ + axisFormat + """,
                         "style": {
                             "fontSize": """ + fontSize + """,
                             "color": """ + chartColor + """
@@ -317,6 +451,7 @@ def build():
     elif chart == "pie":
         width = input('Width: ')
         height = input('Height: ')
+        circle = input('Circle Size: ')
         print("""
 {
 "colors": ["""
@@ -337,7 +472,7 @@ def build():
         "allowPointSelect": true,
         "cursor": true,
         "innerSize": "60%",
-        "size": 135,
+        "size": """ + circle + """,
         "showInLegend": true,
         "dataLabels": {
             "enabled": false
